@@ -1,0 +1,57 @@
+precision highp float;//highp
+uniform sampler2D dataTexture;//帧数8*骨骼8*12=768//用于求手臂骨骼//8个手臂骨骼的数据
+uniform mat4 modelViewMatrix,projectionMatrix;
+uniform float time;//0-10000
+
+attribute vec3 position;
+attribute vec2 inUV;
+attribute vec4 skinIndex;
+attribute float speed;
+attribute vec3 mcol0,mcol1,mcol2,mcol3;
+attribute vec4 type;//设置贴图0-2,type[3]用处不明
+attribute vec3 color;
+
+varying vec2 outUV;
+varying vec3 varyColor;
+varying float type_part,texType;
+varying vec3 myTest01;
+
+//void Test_init();
+//bool Test_meetExpectations();float Animation_getNumByTexture(float n);
+void Animation_init();
+mat4 Animation_computeMatrix();
+float SKELETON_SIZE0=204.0; //用于求不动位置的骨骼//骨骼(25-8)*12=204//骨骼矩阵
+float SKELETON_SIZE1=768.0;//鼓掌动画//8个手臂骨骼的数据//帧数8*骨骼8*12=768
+float SKELETON_SIZE2=96.0;//96.0//举手动作//8*12=96
+void main(){
+    vec3 vPosition = position;
+
+    outUV = inUV;
+    varyColor=vec3(color[0], color[1], color[2]);
+
+    if (vPosition.y<0.15&&(vPosition.z<0.35&&vPosition.z>-0.35)){
+        type_part=0.0;//下身
+        texType=floor(type[0]+0.5);
+    } else if (vPosition.y<0.59) {
+        type_part=1.0;//上身
+        texType=floor(type[1]+0.5);
+    } else{
+        type_part=2.0;//头部
+        texType=floor(type[2]+0.5);
+    }
+
+
+    Animation_init();
+    mat4 matrix1=Animation_computeMatrix();//计算动画的变换矩阵
+
+    mat4 matrix2 = mat4(//确定位置//最后一列是 0 0 0 1
+        vec4(mcol0, 0),
+        vec4(mcol1, 0),
+        vec4(mcol2, 0),
+        vec4(mcol3, 1)//实例化物体对象世界矩阵
+    );
+    gl_Position = projectionMatrix * modelViewMatrix * matrix2  * matrix1 * vec4(position, 1.0);
+
+    //Test_init();
+    //if(!Test_meetExpectations())gl_Position =vec4(0.,0.,0.,0.);
+}

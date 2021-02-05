@@ -1,0 +1,47 @@
+关键字开始：\单斜线
+开始新的题目 ：\item
+位置：
+        右上：^
+        右下：_
+        正下：\limits
+列举条件：
+        开始：\begin{gather}  
+        结束：\end{gather}    
+        条目间的间隔：\\    
+表达式：$$
+        乘法：\times
+        属于：\in
+        不等于：\neq
+\le和\leq为小于等于
+\ge和\geq为大于等于
+        任意：\forall
+        存在：\exists
+        推导：\Rightarrow
+        范式：\parallel
+        绝对值：\lvert x \rvert
+        正交：\perp
+标注幂指数：A^{-1}
+标注右小标：a_{j,j+1}
+生成矩阵：\begin{bmatrix}  \end{bmatrix}
+        开始：\begin{bmatrix}  
+        结束：\end{bmatrix}
+        行内：&
+        行间：\\
+        省略号-横：\cdots\
+        省略号-竖：\vdots
+        省略号-斜：\ddots
+连加：\sum
+        \sum_{i=1}^n{a_{ii}}
+        \sum_{i=1}^{i=2}{A}
+最值：
+        \max \limits_{1<x<100}f(x)
+特殊符号：
+        \alpha
+        \beta 
+        \lambda
+        \sigma
+        \Sigma
+分数
+        \frac{1}{2}
+
+
