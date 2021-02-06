@@ -30,29 +30,26 @@
 			
 			 \State   
 			
-			  \Function {}{} main() 
-			  \State $judgeArea(vertexInf.position);$ //判断当前顶点处于身体的哪个部位
-			  \State  $matrix1=computeAnimationMatrix(uniformInf.time,instanceObjInf.animationStyle.speed,$
-\\\qquad\qquad\qquad\qquad $uniformInf.skelontonDate,instanceObjInf.animationStyle.type,vertexInf.skinIndex);$ 
-			  \State  $matrix2=computeInstanceObjMatrix();$
-			  \State  $glPosition = projectionMatrix* modelViewMatrix*matrix2*matrix1*vec4(position, 1);$
-			  \EndFunction 
+			  
+			  \State $judgeArea();$ //判断当前顶点处于身体的哪个部位
+			  \State  $matrix1=computeAnimationMatrix();$ 
+			  
+			  %matrix2
+			  \If {$bone(vertexInf.skinIndex) have \; animation$}//对应的骨骼有动画
+			  \State $frameIndex=time*speed \ mod (frameIndexMax+1);$
+			  \State $address0=addressGet1(skinIndex,type,frameIndex);$
+			  \Else  //对应的骨骼没有动画
+			  \State $address0=addressGet2(skinIndex,type);$
+			  \EndIf   
+			  \State $matrix2=getMatrix(skelontonDate,address0);$
+			  
+			  
+			  
+			  \State  $glPosition = modelViewProjectionMatrix*matrix2*matrix1*position;$
+			  
 			
 
-			  \Function {}{}  computeAnimationMatrix(time,speed,skelontonDate,type,skinIndex)
-				\If {$bone(vertexInf.skinIndex) have animation$}  //对应的骨骼有动画
-				\State $frameIndex=time*speed \quad mod (frameIndexMax+1);$
-				\State $address0=addressGet1(skinIndex,type,frameIndex);$
-				\Else  //对应的骨骼没有动画
-				 \State $address0=addressGet2(skinIndex,type);$
-				\EndIf   
-				\State$result=getMatrix(skelontonDate,address0);$
-				\State \Return{$result$} 
-			 \EndFunction 
-			
-			
-			
-			
+			  
 			
 			\Ensure
 			\State
