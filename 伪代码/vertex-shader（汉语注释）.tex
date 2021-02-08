@@ -1,0 +1,66 @@
+\documentclass[11pt]{ctexart}  
+\usepackage[top=1cm, left=1cm, right=1cm]{geometry}  
+\usepackage{algorithm}  
+\usepackage{algorithmicx}  
+\usepackage{algpseudocode}  
+\usepackage{amsmath}  
+
+\floatname{algorithm}{算法}  
+\renewcommand{\algorithmicrequire}{\textbf{输入数据:}}   
+\renewcommand{\algorithmicensure}{\textbf{输出数据:}}  
+
+\begin{document}  
+	\begin{algorithm}  
+		\caption{vertexfragment}  
+		\begin{algorithmic} %每行显示行号  
+			
+			\Require 	
+			\State
+			vertexInf=\{ $position$，$UV$，$skinIndex$   \}//当前顶点的信息 \\
+			instanceObjInf=\{  //实例化对象的信息\\
+				\qquad $matrix$,\\
+				\qquad $animationStyle$,//动画的类型和速度\\
+				\qquad $textureStyle$,//贴图的类型和色调\\
+			\}
+			\State
+			uniformInf=\{  //所有实例化对象共用的数据\\
+			\qquad $skelontonDate$,//骨骼数据\\
+			\qquad $time$,//时间用于计算当前的帧序号\\
+			\}
+			
+			 \State   
+			
+			  
+			  \State $judgeArea();$ //判断当前顶点处于身体的哪个部位
+			  \State  $matrix1=computeAnimationMatrix();$ 
+			  
+			  %matrix2
+			  \If {$bone(vertexInf.skinIndex) have \; animation$}//对应的骨骼有动画
+			  \State $frameIndex=time*speed \ mod (frameIndexMax+1);$
+			  \State $address0=addressGet1(skinIndex,type,frameIndex);$
+			  \Else  //对应的骨骼没有动画
+			  \State $address0=addressGet2(skinIndex,type);$
+			  \EndIf   
+			  \State $matrix2=getMatrix(skelontonDate,address0);$
+			  
+			  
+			  
+			  \State  $glPosition = modelViewProjectionMatrix*matrix2*matrix1*position;$
+			  
+			
+
+			  
+			
+			\Ensure
+			\State
+			glPosition //当前顶点对应屏幕上的位置 \\
+			sendFragmentShader=\{  //传递给FragmentShader的信息\\
+			\qquad $areaType$,//当前点所在的区域\\
+			\qquad $UV$,
+			\qquad $textureType$,//贴图类型\\
+			\qquad $color$,//由于色调调整\\
+			\}
+			
+		\end{algorithmic}  
+	\end{algorithm}  
+\end{document}   

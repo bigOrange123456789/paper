@@ -1,0 +1,46 @@
+\documentclass[11pt]{ctexart}  
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}  
+\usepackage{algorithm}  
+\usepackage{algorithmicx}  
+\usepackage{algpseudocode}  
+\usepackage{amsmath}  
+
+\begin{document}  
+	\begin{algorithm}[h]  
+		\caption{Calculation of crowd layout}  
+		\begin{algorithmic}[1]  
+			
+			\For{$i=0$; $i<height(A)$; $i++$ }  
+			
+			\For{$j=0$; $j<width(A)$; $j++$ }  
+			
+			\State $max=-Infinity;$
+			
+			\ForAll {$k$}  
+			
+			
+			
+			\label{code:TrainBase:getc}  
+			\State $A[i][j]=k;$
+			\State $f=f(A);$  
+			
+			\If{$f>max$ }  
+			\State $max=f;$ 
+			\State $maxK=k;$ 
+			\EndIf
+			
+			\label{code:TrainBase:pos}  
+			\EndFor; %\ForAll {$k$} 
+			
+			\State $A[i][j]=maxK$;
+			
+			\EndFor
+			
+			\EndFor  
+			
+			
+			
+			\label{code:recentEnd}  
+		\end{algorithmic}  
+	\end{algorithm}  
+\end{document}  

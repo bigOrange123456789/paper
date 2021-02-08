@@ -1,0 +1,492 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{enumerate}
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass}
+\rhead{\hmwkTitle}
+\lfoot{\Address}
+\rfoot{Page \thepage}
+\cfoot{}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+\newenvironment{homeworkProblem}{
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Class
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Matrix Basics}
+\newcommand{\hmwkDueDate}{\today}
+\newcommand{\hmwkClass}{Engineering Mathematics Basics}
+\newcommand{\hmwkClassTime}{}
+\newcommand{\Address}{SSE TongJi University}
+\newcommand{\hmwkClassInstructor}{Professor Qingjiang Shi}
+\newcommand{\hmwkAuthorName}{Zhicheng Liu}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass\\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{By\ \textit{\hmwkClassInstructor\ \hmwkClassTime }}\\
+ %   \vspace{0.1in}\small{\Address \\ Due\ on\ \hmwkDueDate\  }
+    \vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{\today}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution}}
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\begin{document}
+	\maketitle
+	\newpage
+	\begin{enumerate}
+		\item %1
+		Let A be the $n \times n$ matrix with $a_{j,j+1}=1,j=1,...,n-1$ and all other elements zero. Represent A as a sum of vector outer products.
+		
+		solution：
+		
+		     $A=\sum_{j=1}^{j=n-1}{ I_{j}I_{j} }$
+		
+		\item%2
+		Consider the block matrix
+		 $\begin{bmatrix}A&B\\C&D\end{bmatrix}$ with $A \in C^{n \times n}$ nonsingular.
+		
+		1) Determine $X \in C^{m \times m}$ and $Y \in C^{n \times n}$ such that
+		
+		\[ \begin{bmatrix} A&B\\C&D \end{bmatrix} = \begin{bmatrix} I&O\\{CA^{-1}}&I \end{bmatrix} \begin{bmatrix} A&B\\O&X \end{bmatrix} (block LU factorization)\] 
+		
+		and that
+		
+		\[ \begin{bmatrix} A&B\\C&D \end{bmatrix} = \begin{bmatrix} I&BD^{-1}\\O&I \end{bmatrix} \begin{bmatrix} Y&O\\C&D \end{bmatrix} (block LU factorization)\] 
+		
+		solution:
+		
+		prove the first equation:if $X=D-CA^{-1}B$,\[ \begin{bmatrix} I&O\\{CA^{-1}}&I \end{bmatrix} \begin{bmatrix} A&B\\O&X \end{bmatrix}
+		= \begin{bmatrix} IA & IB \\ CA^{-1}A & CA^{-1}B+IX \end{bmatrix}
+		= \begin{bmatrix} A & B \\ C & CA^{-1}B+X \end{bmatrix}
+		=\begin{bmatrix} A&B\\C&D \end{bmatrix}
+		\] 
+		
+		prove the second equation:if $Y=A-BD^{-1}C$,\[ \begin{bmatrix} I&BD^{-1}\\O&I \end{bmatrix} \begin{bmatrix} Y&O\\C&D \end{bmatrix}
+		= \begin{bmatrix} IY+BD^{-1}C & BD^{-1}D \\ IC &ID \end{bmatrix}
+		= \begin{bmatrix} Y+BD^{-1}C & B \\ C & D \end{bmatrix}
+		=\begin{bmatrix} A&B\\C&D \end{bmatrix}
+		\] 
+		
+		2) Prove that
+		\begin{gather}
+			det(A)det(D-CA^{-1}B)=det(D)det(A-BD^{-1}C)\\
+			det(I-CB)=det(I-BC)\\
+			det(I-xy^*) = 1-y^*x
+		\end{gather}
+		where $x, y \in C^n$.
+		
+		solution:$ $ 
+		
+		prove the first equation:$ $
+		
+		\[   \begin{bmatrix} I&O\\{CA^{-1}}&I \end{bmatrix} \begin{bmatrix} A&B\\O&X \end{bmatrix} 
+		=\begin{bmatrix} A&B\\C&D \end{bmatrix}
+		 = \begin{bmatrix} I&BD^{-1}\\O&I \end{bmatrix} \begin{bmatrix} Y&O\\C&D \end{bmatrix}\] 
+		 \[ det(\begin{bmatrix} I&O\\{CA^{-1}}&I \end{bmatrix}) det(\begin{bmatrix} A&B\\O&X \end{bmatrix}) 
+		 =det(\begin{bmatrix} I&BD^{-1}\\O&I \end{bmatrix}) det(\begin{bmatrix} Y&O\\C&D \end{bmatrix})\]
+		 \[ det(I)det(AX)=det(I)det(YD)\]
+		 \[ det(AX)=det(YD)\],$X=D-CA^{-1}B$,$Y=A-BD^{-1}C$
+		 
+		 \[det(A)det(D-CA^{-1}B)=det(D)det(A-BD^{-1}C)\]
+		
+		prove the second equation:$ $
+		
+		if A=D=I,
+		
+		\[det(I)det(I-CI^{-1}B)=det(I)det(I-BI^{-1}C)\]
+		
+		\[det(I-CB)=det(I)det(I-BC)\]
+		
+		prove the last equation:$ $
+		
+		if C=x,B=$y^{*}$,
+		
+		$det(I-xy^{*})=det(I)det(I- y^{*}x)$ 
+		
+		$det(I-xy^{*})=det(I-y^{*}x)$
+		
+		Because A is a $1 \times 1$ matrix,
+		
+		$det(I-xy^{*})=1-y^{*}x$
+		
+		\item%3
+		Let $A \in C^{n \times n}$, the trace of A is defined as the sum of its diagonal elements, i.e., $trace(A)=\sum_{i=1}^n{a_{ii}}$.
+		
+		1) Show that the trace is a linear function, i.e., if $A,B \in C^{n \times n}$ and $\alpha,\beta \in C$, then
+		\[ trace(\alpha A+\beta B)=\alpha trace(A)+\beta trace(B).\]
+		
+		solution:$ $ 
+		
+			$trace(\alpha A+\beta B)=\sum_{i=1}^n{(\alpha a_{ii}+\beta b_{ii})}=\alpha \sum_{i=1}^n{a_{ii}}+\beta \sum_{i=1}^n{b_{ii}}=\alpha trace(A)+\beta trace(B)$
+		
+		2) Show that $trace(AB)=trace(BA)$, even though in general $AB \neq BA$.
+		
+		solution:$ $
+		
+			$trace(AB)=\sum_{i=1}^n\sum_{k=1}^n{ a_{ik}b_{ki} })$
+			
+			$trace(BA)=\sum_{i=1}^n\sum_{k=1}^n{ b_{ik}a_{ki} }
+			=\sum_{k0=1}^n\sum_{i0=1}^n{ b_{k0i0}a_{i0k0} }
+			=\sum_{k0=1}^n\sum_{i0=1}^n{ a_{i0k0}b_{k0i0} }
+			=trace(AB)$
+		
+		3) Show that if $S \in R^{n \times n}$ is skew-symmetric, i.e., $S^T=-S$, the $trace(S)=0$. Prove the converse to this statement or provide a counterexample.
+		
+		solution:$ $
+		
+		$trace(S)=trace(S^T)=trace(-S)=-trace(S)$
+		
+		So,trace(S)=0.
+		\[\]counterexample of the converse to this statement:
+		
+		$S=\begin{bmatrix} 0&1\\0&0 \end{bmatrix},trace(\begin{bmatrix} 0&1\\0&0 \end{bmatrix})=0$
+		
+		$S^T=(\begin{bmatrix} 0&1\\0&0 \end{bmatrix})^T
+		=(\begin{bmatrix} 0&0\\1&0 \end{bmatrix})\neq
+		(\begin{bmatrix} 0&-1\\0&0 \end{bmatrix})=-S$
+		
+		\item%4
+		Let $\lambda_1, \lambda_2, ..., \lambda_n$ be the eigenvalues of A. Show that
+		\begin{gather}
+			\setcounter{equation}{0}
+			det(A)=\lambda_1\lambda_2...\lambda_n,\\
+			trace(A)=\lambda_1+\lambda_2+...+\lambda_n,\\
+			trace(A^k)=\lambda_1^k + \lambda_2^k + ... + \lambda_n^k, k=1,2,...
+		\end{gather}
+	
+	    solution:$ $
+	    
+	    prove the first equation:$A=C^{-1}
+	    \begin{bmatrix} \lambda _1 & \cdots\ &0\\
+	    	\vdots &\ddots &\vdots \\
+	    	0& \cdots\ &\lambda _n \end{bmatrix}
+	    C$
+	    
+	    $det(A)=det(C^{-1})
+	    det(\begin{bmatrix} \lambda _1 & \cdots\ &0\\
+	    	\vdots &\ddots &\vdots \\
+	    	0& \cdots\ &\lambda _n \end{bmatrix})
+	    det(C)$
+	    
+	    $det(A)=det(C^{-1}C)
+	    det(\begin{bmatrix} \lambda _1 & \cdots\ &0\\
+	    	\vdots &\ddots &\vdots \\
+	    	0& \cdots\ &\lambda _n \end{bmatrix})$
+    	
+    	$det(A)= \lambda _1  \cdots\  \lambda _n $
+    	
+    	\[\]prove the second equation:$ $
+    	
+    	$det(\lambda -A)=(\lambda -\lambda_1)\cdots\ (\lambda -\lambda_n)$
+    	
+    	the coefficient of the term of $\lambda^{n-1}$ is $-(\lambda_1+\cdots\ +\lambda_n)$
+    	
+    	$det(\lambda -A)=det(\begin{bmatrix} 
+    		\lambda -a_{1,1} & \cdots\ &-a_{1,n} \\
+    		\vdots &\ddots &\vdots \\
+    		-a_{n,1}& \cdots\ &\lambda -a_{n,n} 
+    	\end{bmatrix})$
+    
+        the coefficient of the term of $\lambda^{n-1}$ is only related to $(\lambda-a_{11})(\lambda-a_{22}) \cdots\ (\lambda-a_{nn})$
+        
+        so,the coefficient of the term of $\lambda^{n-1}$ is $-(a_1+\cdots\ +a_n)$
+        
+        so,$-(\lambda_1+\cdots\ +\lambda_n)=-(a_1+\cdots\ +a_n)$
+    	
+    	\[\]prove the last equation:$ $
+    	
+    	if $A \alpha =\lambda_1 \alpha ,A^k=\lambda ^k\alpha $
+    	
+    	$So, \lambda_1^k, \lambda_2^k, ..., \lambda_n^k$ be the eigenvalues of $A^k$.
+    	
+    	
+    	$So,trace(A^k)=\lambda_1^k + \lambda_2^k + ... + \lambda_n^k,k=1,2,...$
+		
+		\item%5
+		1) Let $x_1, x_2, ..., x_k$ be eigenvectors of A. Show that $S = span\{x_1, x_2, ..., x_k\}$ is invariant under A.
+		
+		solution:$ $
+		
+		if $y\in S$,
+		
+		$\exists a_1 ,\cdots\ a_k,y=a_1 x_1+\cdots\ a_k x_k$
+		
+		$so,Ay=a_1\lambda _1 x_1+\cdots\ +a_k\lambda _k x_k$
+		
+		so,S is invariant under A.
+		
+		2) Let $A=\begin{bmatrix} 2&1&0\\0&2&0\\0&0&1\end{bmatrix}$. Show that the space $S=span\{e_1,e_2\}$ is invariant under A and is not spanned by eigenvectors of A. Here $e_1 = \begin{bmatrix} 1\\0\\0 \end{bmatrix}$ and $e_2 = \begin{bmatrix} 0\\1\\0 \end{bmatrix}$.
+		
+		solution:$ $
+		
+		$\forall y\in S,$ y=$c_1 e_1 +c_2 e_2$
+		
+		$Ay=A c_1 e_1 +A c_2 e_2=c_1 A e_1 +c_2 A e_2
+		=c_1 \begin{bmatrix} 2\\0\\0  \end{bmatrix}
+		+c_1 \begin{bmatrix} 1\\2\\0  \end{bmatrix}
+		=(2c_1+c_2)e_1+2c_2 e_2$
+		
+		so,S is invariant under A.
+		
+		$det(\lambda E-A)=0$ can derive $\lambda _1=\lambda _2 =2,\lambda _3=1$
+		
+		$(2E-A)\alpha =0$ can derive $\alpha _1=k_1\begin{bmatrix} 1\\0\\0  \end{bmatrix} $
+		
+		$(E-A)\alpha =0$ can derive $\alpha _2=k_2\begin{bmatrix} 0\\0\\1  \end{bmatrix} $
+		
+		$e_2=b_1 \begin{bmatrix} 1\\0\\0  \end{bmatrix} +b_2 \begin{bmatrix} 0\\0\\1  \end{bmatrix} $ can derive that $b_1,b_2$ has no solution.
+		
+		so,S is not spanned by eigenvectors of A.
+		
+		\item%6
+		Verify that $\parallel xy^*\parallel_F = \parallel xy^* \parallel_2 = \parallel x \parallel_2 \parallel y \parallel_2$ for any $x, y \in C^n$.
+		
+		solution:$ $
+		
+		$\parallel xy^*\parallel ^2_F =trace((yx^*)(xy^*))
+		=(x^*x)trace(yy^*)=\sum_{i=1}^n{x_{i}^2}\sum_{j=1}^n{y_{j}^2}$
+		
+		$\parallel xy^*\parallel _2
+		=\max \limits_{z}((\parallel xy^*z\parallel _2^2)/(\parallel z\parallel _2^2))
+		=\max \limits_{z}((\lvert y^*z \rvert \parallel x\parallel _2^2)/(\parallel z\parallel _2^2))
+		=\parallel y\parallel _2^2\parallel ky\parallel _2^2\parallel x\parallel _2^2/\parallel ky\parallel _2^2=\parallel x\parallel _2^2 \parallel y\parallel _2^2$,k is a number.
+		
+		\item%7
+		Let $A \in C^{n \times m}$. Show that $\parallel A \parallel_2 \leq \parallel A \parallel_F$. (Recall that $trace(B)=\sum_i\lambda_i(B)$).
+		
+		solution:$ $
+		
+		$\parallel A\parallel _F^2=trace(A^*A)$
+		
+		$\parallel A\parallel _2^2=\max \limits_{x}\frac{\parallel Ax\parallel _2^2}{\parallel x\parallel _2^2}= \max \limits_{i}\lambda _i$
+		
+		$trace(A^*A)=\sum_{i=1}^n{\lambda _i}> \max \limits_{i}\lambda _i$
+		
+		\item%8
+		For  $A \in C^{n \times m}$, show that
+		\begin{gather}
+			\setcounter{equation}{0}
+			\parallel A \parallel_1 = \underset{x \neq 0}{max}\frac{\parallel Ax \parallel_1}{\parallel x \parallel_1} = \underset{1 \le j \le n}{max}{\sum_{i = 1}^{m} \mid a_{ij} \mid} \\
+			\parallel A \parallel_\infty = \underset{x \neq 0}{max}\frac{\parallel Ax \parallel_\infty}{\parallel x \parallel_\infty} = \underset{1 \le j \le n}{max}{\sum_{i = 1}^{m} \mid a_{ij} \mid}
+		\end{gather}
+	
+	    solution:$ $%8
+	    
+	    $\parallel A \parallel_1
+	    = \max \limits_{x\neq 0}\frac{\parallel Ax \parallel_1}{\parallel x \parallel_1}
+	    = \max \limits_{x\neq 0}\frac{\sum _i \lvert \sum _j a_{ij}x_i \rvert}
+	                                 {\sum _i \lvert x_i \rvert }
+	 \leq \max \limits_{x\neq 0}\frac{\sum _i \sum _j \lvert a_{ij}x_i \rvert}
+	                                 {\sum _i \lvert x_i \rvert }
+	 \leq \max \limits_{x\neq 0}\frac{(\max \limits_{j}\sum _i(a_{ij})) \sum _j \lvert x_i \rvert
+	 }{\sum _i \lvert x_i \rvert }
+     =\max \limits_{j}\sum _i(a_{ij}) $
+	    
+	    The proof of the second equation is similar.
+		
+		\item%9
+		Let $A, B \in R^{m \times n}$. Recall that $\parallel A \parallel_F^2 = trace(A^TA)$ and that for any matrix $D$ for which the product $AD$ is defined, $trace(AD)=trace(DA)$.
+		
+		1) Show that the $Q$ that minimizes $\parallel A - QB \parallel_F$ over all choices of orthogonal $Q$ also maximizes $trace(A^TQB)$.
+		
+		solution:$ $%9
+		
+		$\parallel A-QB \parallel _F^2
+		=trace((A-BQ)^T(A-QB))
+		=trace((A^T-B^T Q^T)(A-QB))
+		=trace(A^T A+B^T Q^T Q B -A^T QB-B^T Q^T A)
+		=trace(A^T A+B^T B)-2trace(A^T QB)$
+		
+		$trace(A^T A+B^T B)$ is constant.
+		
+		so,the $Q$ that minimizes $\parallel A - QB \parallel_F$ over all choices of orthogonal $Q$ also maximizes $trace(A^TQB)$
+		
+		2) Suppose that the $SVD$ of the $m \times m$ matrix $BA^T$ is $U\Sigma V^T$, where $U$ and $V$ are $m \times m$ and orthogonal and $\Sigma$ is diagonal with diagonal entries $\sigma_1 \ge ... \ge \sigma_m \ge 0$. Define $Z = V^TQU$. Use these definitions and $(i)$ to show that
+		\[trace(A^TQB) = trace(Z\Sigma) \le \sum_{i=1}^{m}{\sigma_i}\].
+		
+		solution:$ $
+		
+		$trace(A^T QB)=trace(QB A^T)=trace(QU \Sigma V^T)=trace(V^T QU\Sigma )=trace(Z\Sigma )$
+		
+		Z is orthogonal and diagonal,hence $z_{ij}$=0 or 1 or -1,
+		\label{{\tiny key}}
+		$trace(Z\Sigma )= \sum \limits_i z_{ii} \sigma _i \leq \sum \limits_i \sigma _i$
+		
+		3) Identify the choice of $Q$ that gives equality in the bound of $(ii)$.
+		
+		solution:$ $
+		
+		if $Q=VU^T$,
+		
+		$Z=V^TQU=V^TVU^TU=V^{-1}VU^{-1}U=II=I$
+		
+		$trace(Z\Sigma )=trace(\Sigma )=\sum \limits_i \sigma _i$
+		
+		4) Carefully state a theorem summarizing the solution to the minimization of $\parallel A - QB \parallel_F$.
+		
+		solution:$ $
+		
+		$Q=VU^T,Q^T=Q^{-1},\parallel A - QB \parallel_F$ is minimized by Q $\Rightarrow$ 
+		$BA^T=U \Sigma V^T$is an SVD.
+		
+		\item
+		Let $A \in C^{m \times n}$.
+		
+		1) Show that $(range(A))^\perp = null(A^*)$ and that $(null(A))^\perp = range(A^*)$.
+		
+		solution:$ $
+		
+		$A=U  \Sigma V^*
+		,r=Rank(A)
+		\Rightarrow null(A^*)
+		$=$span\{u_{r+1},\cdots\ ,u_m\},range(A)=span\{u_1,\cdots\ ,u_r\}
+		\Rightarrow ( range(A) )^\perp =null(A)
+		\Rightarrow range(A)=(null(A))^\perp $
+		
+		2) Show respectively that $AA^+, A^+A, I-A^+A and I-AA^+$ are the orthogonal projectors onto $range(A)$, $range(A^*), null(A) and null(A^*)$.
+		
+		solution:$ $
+		
+		First part:$ $
+		
+		$(AA^+)^2=(AA^+A)A^+=AA^+$
+		
+		$\forall x\in range(A),x=Ay=AA^+Ay=AA^+x 
+		\Rightarrow x\in range(AA^+)$
+		
+		$\forall x\in range(AA^+),x=AA^+y=A(A^+y)
+		\Rightarrow x\in range(A)$
+		
+		hence $AA^+$ are the orthogonal projectors onto $range(A)$.
+		
+		Second part:$ $
+		
+		By first part,$A^*(A^*)^+$ are the orthogonal projectors onto $range(A^*)$.
+		
+		hence $A^+A$ are the orthogonal projectors onto $range(A^*)$.
+		
+		Third part:$ $
+		
+		By first part,$I-AA^+$ are the orthogonal projectors onto $range(A^\perp )=null(A)$.
+		
+		hence $I-AA^+$ are the orthogonal projectors onto $null(A)$.
+		
+		Last part:$ $
+		
+		By second part,$I-A^+A$ are the orthogonal projectors onto $range((A^*)^\perp )=null(A^*)$.
+		
+		hence $I-AA^+$ are the orthogonal projectors onto $null(A^*)$.
+		
+		3) Suppose $rank(A)=r$, let $A = U\Sigma V^*$ with $ U = \lbrack U_1 \quad U_2 \rbrack$ and	$V = \lbrack V_1 \quad V_2\rbrack$ unitary and partitioned, such that $U_1 \in C^{m \times r}$ and $V_1 \in C^{n \times r}$. Show that $U_1U_1^*, V_1V_1^*, V_2V_2^*$ and $U_2U_2^*$ are the orthogonal projectors onto $range(A), range(A^*), null(A)$ and $null(A^*)$, respectively.
+		
+		solution:$ $
+		
+		$AA^+=U\Sigma V^*(V\Sigma ^+ U^*)
+		=U
+		 \begin{bmatrix} I_r&0\\0&0 \end{bmatrix} 
+		 U^*
+		 =U1U1^*$
+		 
+		 hence $U1U1^*$ are the orthogonal projectors onto $range(A)$.
+		 
+		 other parts are similar. 
+		
+	\end{enumerate}
+\end{document}

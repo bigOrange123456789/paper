@@ -1,7 +1,7 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 20.6.29) (preloaded format=xelatex 2020.10.12)  6 FEB 2021 23:21
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 20.6.29) (preloaded format=xelatex 2020.10.12)  6 FEB 2021 21:30
 entering extended mode
-**./vertex-shader.tex
-(vertex-shader.tex
+**./头部贴图问题.tex
+(头部贴图问题.tex
 LaTeX2e <2020-02-02> patch level 5
 L3 programming layer <2020-06-18> (D:\mySoft2\miktex\tex/latex/ctex\ctexart.cls
 (D:\mySoft2\miktex\tex/latex/ctex/config\ctexbackend.cfg
@@ -368,8 +368,8 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
 \mathdisplay@stack=\toks24
 LaTeX Info: Redefining \[ on input line 2859.
 LaTeX Info: Redefining \] on input line 2860.
-) (vertex-shader.aux)
-\openout1 = `vertex-shader.aux'.
+) (头部贴图问题.aux)
+\openout1 = `头部贴图问题.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
 LaTeX Font Info:    ... okay on input line 12.
@@ -480,14 +480,58 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-[1] (vertex-shader.aux) ) 
-Here is how much of TeX's memory you used:
- 8378 strings out of 414071
- 217225 string characters out of 2900098
- 503144 words of memory out of 3000000
- 25950 multiletter control sequences out of 15000+200000
- 535871 words of font info for 51 fonts, out of 3000000 for 9000
- 1348 hyphenation exceptions out of 8191
- 56i,4n,69p,406b,380s stack positions out of 5000i,500n,10000p,200000b,50000s
+! Display math should end with $$.
+<to be read again> 
+                   m
+l.14 ^^I$m
+          aximize:f(A)$ \\
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
 
-Output written on vertex-shader.pdf (1 page).
+! Missing $ inserted.
+<inserted text> 
+                $
+l.16 ^^I
+        
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--18
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--20
+
+ []
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.24 ^^I
+        
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Display math should end with $$.
+<to be read again> 
+                   \par 
+l.24 ^^I
+        
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+[1
+
+] (头部贴图问题.aux) ) 
+Here is how much of TeX's memory you used:
+ 8348 strings out of 414071
+ 216113 string characters out of 2900098
+ 498108 words of memory out of 3000000
+ 25921 multiletter control sequences out of 15000+200000
+ 535863 words of font info for 50 fonts, out of 3000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 56i,4n,69p,399b,255s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on 头部贴图问题.pdf (1 page).

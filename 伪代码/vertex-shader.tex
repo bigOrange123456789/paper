@@ -5,9 +5,9 @@
 \usepackage{algpseudocode}  
 \usepackage{amsmath}  
 
-\floatname{algorithm}{算法}  
-\renewcommand{\algorithmicrequire}{\textbf{输入数据:}}   
-\renewcommand{\algorithmicensure}{\textbf{输出数据:}}  
+\floatname{algorithm}{algorithm}  
+\renewcommand{\algorithmicrequire}{\textbf{InputData:}}   
+\renewcommand{\algorithmicensure}{\textbf{OutData:}}  
 
 \begin{document}  
 	\begin{algorithm}  
@@ -16,49 +16,49 @@
 			
 			\Require 	
 			\State
-			vertexInf=\{ $position$，$UV$，$skinIndex$   \}//当前顶点的信息 \\
-			instanceObjInf=\{  //实例化对象的信息\\
+			vertexInf=\{ $position$，$UV$，$skinIndex$   \}//Information about the current vertex \\
+			instanceObjInf=\{  //Information about the instantiated objects\\
 				\qquad $matrix$,\\
-				\qquad $animationStyle$,//动画的类型和速度\\
-				\qquad $textureStyle$,//贴图的类型和色调\\
+				\qquad $animationStyle$,//The type and speed of animation\\
+				\qquad $textureStyle$,//Types and tones of maps\\
 			\}
 			\State
-			uniformInf=\{  //所有实例化对象共用的数据\\
-			\qquad $skelontonDate$,//骨骼数据\\
-			\qquad $time$,//时间用于计算当前的帧序号\\
+			uniformInf=\{  //Data shared by all instantiated objects\\
+			\qquad $skelontonDate$,//Bone data\\
+			\qquad $time$,//Time is used to calculate the current frame number\\
 			\}
 			
 			 \State   
 			
 			  
-			  \State $judgeArea();$ //判断当前顶点处于身体的哪个部位
-			  \State  $matrix1=computeAnimationMatrix();$ 
+			  
+			  
 			  
 			  %matrix2
-			  \If {$bone(vertexInf.skinIndex) have \; animation$}//对应的骨骼有动画
+			  \If {$bone(vertexInf.skinIndex) have \; animation$}
 			  \State $frameIndex=time*speed \ mod (frameIndexMax+1);$
 			  \State $address0=addressGet1(skinIndex,type,frameIndex);$
-			  \Else  //对应的骨骼没有动画
+			  \Else  
 			  \State $address0=addressGet2(skinIndex,type);$
 			  \EndIf   
-			  \State $matrix2=getMatrix(skelontonDate,address0);$
+		\State $matrix1 \gets skelontonDate \ at \ position \ address0 ;$
 			  
-			  
+			  \State  $matrix2 \gets instanceObjInf.matrix;$ 
 			  
 			  \State  $glPosition = modelViewProjectionMatrix*matrix2*matrix1*position;$
 			  
-			
+			\State $judgeArea();$ //Determine which part of the body the current vertex is in
 
 			  
 			
 			\Ensure
 			\State
-			glPosition //当前顶点对应屏幕上的位置 \\
-			sendFragmentShader=\{  //传递给FragmentShader的信息\\
-			\qquad $areaType$,//当前点所在的区域\\
+			glPosition //The current vertex corresponds to the position on the screen \\
+			sendFragmentShader=\{  //Information sent to fragmentshader\\
+			\qquad $areaType$,//The area where the current point is located\\
 			\qquad $UV$,
-			\qquad $textureType$,//贴图类型\\
-			\qquad $color$,//由于色调调整\\
+			\qquad $textureType$,//Map type\\
+			\qquad $color$,//For tone adjustment\\
 			\}
 			
 		\end{algorithmic}  
