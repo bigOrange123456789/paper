@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 20.6.29) (preloaded format=xelatex 2020.10.12)  6 FEB 2021 23:21
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 20.6.29) (preloaded format=xelatex 2020.10.12)  13 FEB 2021 14:36
 entering extended mode
 **./vertex-shader.tex
 (vertex-shader.tex
@@ -488,6 +488,6 @@ Here is how much of TeX's memory you used:
  25950 multiletter control sequences out of 15000+200000
  535871 words of font info for 51 fonts, out of 3000000 for 9000
  1348 hyphenation exceptions out of 8191
- 56i,4n,69p,406b,380s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 56i,4n,69p,406b,400s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 Output written on vertex-shader.pdf (1 page).

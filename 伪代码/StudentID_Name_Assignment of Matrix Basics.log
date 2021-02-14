@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 20.6.29) (preloaded format=xelatex 2020.10.12)  6 FEB 2021 20:49
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 20.6.29) (preloaded format=xelatex 2020.10.12)  13 FEB 2021 14:36
 entering extended mode
 **"./StudentID_Name_Assignment of Matrix Basics.tex"
 ("StudentID_Name_Assignment of Matrix Basics.tex"
@@ -498,7 +498,51 @@ File: l3backend-xdvipdfmx.def 2020-06-29 L3 backend support: xdvipdfmx
 \g__pdf_backend_object_int=\count283
 \g__pdf_backend_annotation_int=\count284
 )
-No file "StudentID_Name_Assignment of Matrix Basics".aux.
+("StudentID_Name_Assignment of Matrix Basics.aux"
+! Missing \endcsname inserted.
+<to be read again> 
+                   \protect 
+l.2 \newlabel{{\tiny  key}}{{9}{7}}
+                                   
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \protect 
+l.2 \newlabel{{\tiny  key}}{{9}{7}}
+                                   
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing { inserted.
+<argument> r@{\tiny key}
+                        
+l.2 \newlabel{{\tiny  key}}{{9}{7}}
+                                   
+Where was the left brace? You said something like `\def\a}',
+which I'm going to interpret as `\def\a{}'.
+
+! Extra \endcsname.
+\@namedef ...xpandafter \def \csname #1\endcsname 
+                                                  
+l.2 \newlabel{{\tiny  key}}{{9}{7}}
+                                   
+I'm ignoring this, since I wasn't doing a \csname.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2 \newlabel{{\tiny  key}}{{9}{7}}
+                                   
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+)
 \openout1 = `"StudentID_Name_Assignment of Matrix Basics.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 130.
@@ -512,7 +556,7 @@ LaTeX Font Info:    ... okay on input line 130.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 130.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 1
 30.
-(D:\mySoft2\miktex\tex/latex/base\ts1cmr.fd
+ (D:\mySoft2\miktex\tex/latex/base\ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 130.
@@ -523,7 +567,9 @@ LaTeX Font Info:    ... okay on input line 130.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 130.
 LaTeX Font Info:    ... okay on input line 130.
 
-ABD: EveryShipout initializing macros
+ABD: EveryShipout initializing macros [1
+
+]
 LaTeX Font Info:    Trying to load font information for U+msa on input line 131
 .
 
@@ -535,46 +581,30 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 131
 
 (D:\mySoft2\miktex\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
-
-]
+) [2]
 Missing character: There is no ： in font [lmroman10-regular]:mapping=tex-text;!
- [2] [3] [4] [5] [6] [7]
+ [3] [4] [5] [6] [7] [8]
 ("StudentID_Name_Assignment of Matrix Basics.aux"
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.2 \newlabel{{\tiny  key}}{{9}{6}}
+l.2 \newlabel{{\tiny  key}}{{9}{7}}
                                    
 The control sequence marked <to be read again> should
 not appear between \csname and \endcsname.
 
-! Extra }, or forgotten \endgroup.
-<argument> {\tiny key}
-                      
-l.2 \newlabel{{\tiny  key}}{{9}{6}}
-                                   
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
+)
 
-! Extra \endcsname.
-\@newl@bel ...dafter \ifx \csname #1@#2\endcsname 
-                                                  \reserved@a \else \@tempsw...
-l.2 \newlabel{{\tiny  key}}{{9}{6}}
-                                   
-I'm ignoring this, since I wasn't doing a \csname.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-) ) 
+ ) 
 Here is how much of TeX's memory you used:
- 13704 strings out of 414071
- 270779 string characters out of 2900098
- 515986 words of memory out of 3000000
- 31113 multiletter control sequences out of 15000+200000
- 538746 words of font info for 58 fonts, out of 3000000 for 9000
+ 13703 strings out of 414071
+ 270787 string characters out of 2900098
+ 515994 words of memory out of 3000000
+ 31112 multiletter control sequences out of 15000+200000
+ 538738 words of font info for 57 fonts, out of 3000000 for 9000
  1348 hyphenation exceptions out of 8191
  60i,12n,66p,465b,273s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on StudentID_Name_Assignment of Matrix Basics.pdf (7 pages).
+Output written on StudentID_Name_Assignment of Matrix Basics.pdf (8 pages).
