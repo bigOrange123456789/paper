@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 20.6.29) (preloaded format=xelatex 2020.10.12)  13 FEB 2021 14:35
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 20.6.29) (preloaded format=xelatex 2020.10.12)  20 FEB 2021 20:58
 entering extended mode
 **./头部贴图问题.tex
 (头部贴图问题.tex
@@ -506,21 +506,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 19--20
 
  []
 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.24 ^^I
-        
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
 
-! Display math should end with $$.
-<to be read again> 
-                   \par 
-l.24 ^^I
-        
-The `$' that I just saw supposedly matches a previous `$$'.
-So I shall assume that you typed `$$' both times.
+Underfull \hbox (badness 10000) in paragraph at lines 30--32
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--47
+
+ []
 
 [1
 
@@ -528,10 +522,10 @@ So I shall assume that you typed `$$' both times.
 Here is how much of TeX's memory you used:
  8348 strings out of 414071
  216113 string characters out of 2900098
- 498108 words of memory out of 3000000
+ 500108 words of memory out of 3000000
  25921 multiletter control sequences out of 15000+200000
  535863 words of font info for 50 fonts, out of 3000000 for 9000
  1348 hyphenation exceptions out of 8191
- 56i,4n,69p,399b,255s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 56i,7n,69p,399b,255s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 Output written on 头部贴图问题.pdf (1 page).

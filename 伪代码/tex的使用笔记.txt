@@ -43,5 +43,7 @@
         \Sigma
 分数
         \frac{1}{2}
-
-
+空集
+        \emptyset 
+无穷
+        \infty
