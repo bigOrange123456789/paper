@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 20.6.29) (preloaded format=xelatex 2020.10.12)  22 FEB 2021 14:04
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 20.6.29) (preloaded format=xelatex 2020.10.12)  24 FEB 2021 22:38
 entering extended mode
 **./vertex-shader.tex
 (vertex-shader.tex
@@ -490,4 +490,5 @@ Here is how much of TeX's memory you used:
  1348 hyphenation exceptions out of 8191
  56i,4n,69p,406b,400s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on vertex-shader.pdf (1 page).
+Error 1 (driver return code) generating output;
+file vertex-shader.pdf may not be valid.
