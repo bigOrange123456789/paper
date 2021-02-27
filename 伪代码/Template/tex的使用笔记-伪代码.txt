@@ -1,0 +1,15 @@
+整个文件
+	\begin{document} \end{document}
+
+整个算法
+	\begin{algorithm} \end{algorithm}
+算法标题
+	\caption{} 
+
+分支语句
+	\If{}{}
+	\ElseIf{}{}  
+	\Else{}
+循环语句
+
+

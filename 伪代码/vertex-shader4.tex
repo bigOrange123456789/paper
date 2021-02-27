@@ -1,0 +1,85 @@
+%\documentclass[8pt,twocolumn]{ctexart}  %分两栏
+\documentclass[11pt]{ctexart}  
+\usepackage{amssymb}  
+\usepackage{bm}  
+\usepackage{textcomp} %命令\textacutedbl的包,二阶导符号  
+
+% Page length commands go here in the preamble  
+ 
+\usepackage[top=1cm, left=1cm, right=1cm]{geometry}  
+
+\makeatletter  
+\newif\if@restonecol  
+\makeatother  
+\let\algorithm\relax  
+\let\endalgorithm\relax  
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}%[ruled,vlined]{  
+\usepackage{algpseudocode}  
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}   
+\renewcommand{\algorithmicensure}{\textbf{Output:}}   
+
+\begin{document}  
+	
+	\begin{algorithm}  
+		\caption{component matrices computing}  
+		\LinesNumbered  
+\KwIn{
+			\\
+		vertexInf=\{ $position$，$skinIndex$ ,$coordinateUV$  \}\\
+		avatarParameter=\{  \\
+		\qquad $affineMatrix$,\\
+		\qquad $animationType$,\\
+		\qquad $animationSpeed$,\\
+
+		\qquad $headTextureType$,\\
+		\qquad $upperBodyTextureType$,\\
+		\qquad $trousersTextureType$,\\
+
+		\qquad $neckHeight$,\\
+		\qquad $waistHeight$,\\
+		\}
+		\\
+		BonesAffineMatrixs \ ; 
+		\\
+		animationPlayTime \ ; 
+		\\
+		projectionMatrix \ ; \ viewMatrix \ ; \ modelMatrix \ ;
+		\\
+		textureMapping\ ; 
+}  
+\KwOut{\\
+			vextexScenePosition \ ;  \\
+			fragmentColor \ ;\\
+		{\noindent} \rule[0pt]{18.5cm}{0.05em}%[水平高度]{长度}{粗细}
+}    
+		
+ 
+			%matrix2
+				\If{$this \ bone \ have \; animation$}  
+				{  
+					$frameIndex=(animationPlayTime*animationSpeed) \ mod \ frameIndexMax;$
+				}  
+				\Else  
+				{  
+					$frameIndex=0;$
+				}  
+			\\
+			$boneMatrix \gets BonesAffineMatrixs[animationType][frameIndex];$
+			
+			\\
+			 $vextexScenePosition =$ \\
+			\ \ \ \  \
+			$affineMatrix*boneMatrix*position;$
+			
+				\If{$vertexInf.position<waistHeight$}
+				{$textureType= headTextureType;$}
+			\ElseIf{$vertexInf.position<neckHeight$}
+			{$textureType= upperBodyTextureType;$}  
+			\Else{$textureType= trousersBodyTextureType;$}
+			
+			$fragmentColor \gets textureMapping[textureType][coordinateUV];$
+		 $return \ vextexScenePosition \ , \ fragmentColor;$
+	\end{algorithm}  
+
+
+\end{document}  

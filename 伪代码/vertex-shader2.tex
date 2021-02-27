@@ -1,0 +1,93 @@
+\documentclass[11pt]{ctexart}  
+\usepackage[top=1cm, left=1cm, right=1cm]{geometry}  
+\usepackage{algorithm}  
+\usepackage{algorithmicx}  
+\usepackage{algpseudocode}  
+\usepackage{amsmath}  
+
+
+
+
+\floatname{algorithm}{algorithm}  
+\renewcommand{\algorithmicrequire}{\textbf{InputData:}}   
+\renewcommand{\algorithmicensure}{\textbf{OutData:}}  
+
+\begin{document}  
+	
+	\begin{algorithm}  
+		\caption{Lightweight rendering of large crowd}  
+		\begin{algorithmic} 
+			
+			\Require 	%input
+			\State
+			vertexInf=\{ $position$，$skinIndex$ ,$coordinateUV$  \}\\
+			avatarParameter=\{  \\
+				\qquad $affineMatrix$,\\
+				\qquad $animationType$,\\
+				\qquad $animationSpeed$,\\
+				
+				\qquad $headTextureType$,\\
+				\qquad $upperBodyTextureType$,\\
+				\qquad $trousersTextureType$,\\
+				
+				\qquad $neckHeight$,\\
+				\qquad $waistHeight$,\\
+			\}
+			\State
+			BonesAffineMatrixs \ ; 
+			\State
+			animationPlayTime \ ; 
+			\State
+			projectionMatrix \ ; \ viewMatrix \ ; \ modelMatrix \ ;
+			\State
+			textureMapping\ ; 
+			
+			\Ensure %output
+			\State
+			vextexScreenCoordinate \ ;  \\
+			fragmentColor \ ;
+			
+		\end{algorithmic}  
+	
+	%分割线
+	{\noindent} \rule[0pt]{19.5cm}{0.05em}%[水平高度]{长度}{粗细}
+	
+\begin{algorithmic}[1]  %每行显示行号  
+	
+	
+	
+	
+	%matrix2
+	\If {$this \ bone \ have \; animation$}
+	\State $frameIndex=(animationPlayTime*animationSpeed) \ mod \ frameIndexMax;$
+	\Else  
+	\State $frameIndex=0;$
+	\EndIf  
+	\State $boneMatrix \gets BonesAffineMatrixs[animationType][frameIndex];$
+	 
+
+	
+	\State  $vextexScreenCoordinate =$ \\
+	\ \ \ \  \
+	$projectionMatrix * viewMatrix*modelMatrix*affineMatrix*boneMatrix*position;$
+	
+	
+	\If{$vertexInf.position<waistHeight$} 
+	\State $textureType= headTextureType;$
+	\ElsIf{$vertexInf.position<neckHeight$}
+	\State $textureType= upperBodyTextureType;$
+	\Else 
+	\State $textureType= trousersBodyTextureType;$
+	\EndIf
+	
+	\State  $
+	fragmentColor \gets textureMapping[textureType][coordinateUV];
+	$
+	
+	\State $return \ vextexScreenCoordinate \ , \ fragmentColor;$
+
+	
+\end{algorithmic}  
+\end{algorithm}  
+
+\end{document}   

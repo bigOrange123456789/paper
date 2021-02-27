@@ -47,3 +47,6 @@
         \emptyset 
 无穷
         \infty
+
+乘号
+        \times
