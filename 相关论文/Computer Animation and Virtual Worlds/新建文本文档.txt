@@ -1,0 +1,10 @@
+Rendering Workflow:
+Differential Local Deformation
+Differential Aniamtion Deformation
+Differential Overall Deformation
+
+Buffer area:
+PM --update mesh
+animation data
+crow parameter
+CPU--update play time

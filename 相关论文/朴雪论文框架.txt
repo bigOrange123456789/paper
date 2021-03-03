@@ -9,3 +9,28 @@
 4.3模型参数化
 5.结果
 6.结论
+
+纹理
+色调
+形体
+	局部变换
+	整体变换
+动画
+	类别
+	速度
+
+
+texture
+		head
+		Upper body
+		Lower body
+color style
+body
+	Local transformation
+		head
+		Upper body
+		Lower body
+	Global transformation
+animation
+	style
+Effect of parameterized treatment on population

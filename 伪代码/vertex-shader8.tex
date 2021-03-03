@@ -1,0 +1,136 @@
+%\documentclass[8pt,twocolumn]{ctexart}  %分两栏
+\documentclass[11pt]{ctexart}   
+\usepackage[top=1cm, left=1cm, right=1cm]{geometry}  
+
+%\usepackage[linesnumbered,ruled,vlined]{algorithm2e}%结尾无end
+\usepackage[linesnumbered,ruled]{algorithm2e}%[ruled,vlined]
+
+\begin{document}  
+	
+		%算法1%骨骼动画数据的预处理
+	\begin{algorithm}  
+		\caption{Preprocessing of skeleton animation data}  
+		\LinesNumbered  
+		\KwIn{
+			\
+			skeleton,\
+			animations;\\
+		}  
+		\KwOut{\
+			BonesAffineMatrixs \ ;  \\
+			{\noindent} \rule[3pt]{18.5cm}{0.05em}%[水平高度]{长度}{粗细}
+		}  
+	
+		\For{ $frame \gets animations[animType][frameIndex]$ }  
+		{
+			Update skeleton by frame;\\
+			\For{ $bone  \gets  skeleton[boneIndex]$ }  
+			{
+				$matrix \gets bone.affineMatrix$ \\
+				\While{ $bone \ have \ parent$  }  
+				{
+					$bone \gets bone.parentBone;$\\
+					$matrix \gets matrix \times bone.affineMatrix$
+				}  
+			
+				$BonesAffineMatrixs[animType][frameIndex][boneIndex] \gets matrix;$
+			} 
+		}  
+	
+		
+		
+		
+	\end{algorithm}  
+	%算法2%人群多样性动画的实现
+	\begin{algorithm}  
+		\caption{Diversifying crowd animation}  
+		\LinesNumbered  
+\KwIn{ modelGeometry,\
+		crowdParameter,\
+		BonesAffineMatrixs ,\ 
+		\
+		animationPlayTime \ ; 
+}  
+\KwOut{
+			crowdGeometry\ ;  \\
+		{\noindent} \rule[0pt]{18.5cm}{0.05em}%[水平高度]{长度}{粗细}
+}    
+		
+ \For{avatarParameter $\in$ crowdParameter}{
+ 	GET %\\ \ \
+ 	\{affineMatrix,\ animationType,\ animationSpeed \}
+ 	FROM avatarParameter.\\
+ 	
+ 	\For{vertexInf $\in$ modelGeometry}{
+ 		GET %\\ \ \
+ 		\{position,\ boneIndex,\ coordinateUV \}
+ 		FROM vertexInf.\\
+ 		
+ 		%matrix2
+ 	\uIf{$bones[boneIndex] \ have \; animation$}{
+ 		numberOfPlayedFrames $ \gets $ rounding(
+ 		animationPlayTime $\times$ animationSpeed
+ 		);
+ 		\\
+ 		$frameIndex \gets numberOfFramesPlayed \ mod \ frameIndexMax;$
+ 	}
+ 	\Else{
+ 		$frameIndex \gets 0;$
+ 	}
+ 		
+ 		$animationMatrix  \gets  BonesAffineMatrixs[animationType][frameIndex][boneIndex];$
+ 		
+ 		
+ 		$vextexScenePosition  \gets   avatarMatrix \times animationMatrix \times position;$\\
+ 		$crowdGeometry.add(vextexScenePosition);$
+ 	}
+ }
+			
+			
+	\end{algorithm}  
+
+%算法3 化身纹理贴图的分区绑定
+	\begin{algorithm}  
+	\caption{Partitioning avatar texture map}  
+	\LinesNumbered  
+	\KwIn{modelGeometry,\
+		crowdParameter,
+		\
+		textureMapping; 
+	}  
+	\KwOut{crowdMaterial \ ;  \\
+		{\noindent} \rule[0pt]{18.5cm}{0.05em}%[水平高度]{长度}{粗细}
+	}    
+	
+	\For{avatarParameter $\in$ crowdParameter}{
+		GET %\\ \ \
+		\{	$textureType_{\{ head,upperBody,trousers\}}$,\ 
+		$height_{  \{ neck,waist \} }$\} 
+		FROM avatarParameter.\\
+		\For{vertexInf $\in$ modelGeometry}{
+			GET %\\ \ \
+		\{position,\ coordinateUV \}
+			FROM vertexInf.\\
+			
+			\uIf{$position<height_{waist}$}{
+				$type \gets  textureType_{head};$
+			}
+			\uElseIf{$position<height_{neck}$}{
+				$type \gets  textureType_{upperBody};$
+			}
+			\Else{
+				$type \gets  textureType_{trousers};$
+			}
+			
+			$crowdMaterial.add(
+			   textureMapping[type][coordinateUV]
+			) ;$
+		}
+	}
+
+	
+	
+\end{algorithm}  
+
+
+\end{document}  

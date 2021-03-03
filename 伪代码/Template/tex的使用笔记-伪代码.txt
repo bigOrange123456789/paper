@@ -1,15 +1,22 @@
 整个文件
 	\begin{document} \end{document}
-
+【algorithm2e的使用】
+导入包
+	\usepackage[linesnumbered,ruled,vlined]{algorithm2e}%结尾无end
+	\usepackage[linesnumbered,ruled           ]{algorithm2e}%[ruled,vlined]
 整个算法
 	\begin{algorithm} \end{algorithm}
 算法标题
 	\caption{} 
-
+输入输出
+	\KwData{in}
+	\KwIn{in}
+	\KwResult{out }
+	\KwOut{out}
 分支语句
-	\If{}{}
-	\ElseIf{}{}  
-	\Else{}
+	\uIf{a}{1}
+	\uElseIf{b}{2}
+	\Else{3}
 循环语句
 
 
